@@ -1207,10 +1207,21 @@
 
         clickRange: function(e) {
             var label = e.target.getAttribute('data-range-key');
+
+            // console.log("**"+label);
             this.chosenLabel = label;
             if (label == this.locale.customRangeLabel) {
                 this.showCalendars();
-            } else {
+            } else if(label == "CTSD")
+            {
+                var dates = this.ranges[label];
+                this.startDate = dates[0];
+                this.endDate= moment();
+
+                if (!this.alwaysShowCalendars)
+                    this.clickApply();
+            } 
+            else {
                 var dates = this.ranges[label];
                 this.startDate = dates[0];
                 this.endDate = dates[1];
@@ -1334,6 +1345,12 @@
                 }
                 this.endDate = null;
                 this.setStartDate(date.clone());
+                if(this.chosenLabel=="CTSD")
+                {
+                    this.setEndDate(moment());
+                    // Comment to disable autoApply
+                   // this.clickApply();
+                }
             } else if (!this.endDate && date.isBefore(this.startDate)) {
                 //special case: clicking the same date for start/end,
                 //but the time of the end date is before the start date
@@ -1373,6 +1390,13 @@
         },
 
         calculateChosenLabel: function () {
+            if(this.chosenLabel=="CTSD")
+            {
+                this.chosenLabel = this.container.find('.ranges li:eq(' + 5 + ')').addClass('active').html();
+                this.showCalendars();
+            }
+            else
+            {
             var customRange = true;
             var i = 0;
             for (var range in this.ranges) {
@@ -1400,6 +1424,7 @@
                 }
                 this.showCalendars();
             }
+        }
         },
 
         clickApply: function(e) {
