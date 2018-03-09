@@ -1212,7 +1212,7 @@
             this.chosenLabel = label;
             if (label == this.locale.customRangeLabel) {
                 this.showCalendars();
-            } else if(label == "CTSD")
+            } else if(label == "Custom To Date")
             {
                 var dates = this.ranges[label];
                 this.startDate = dates[0];
@@ -1345,7 +1345,7 @@
                 }
                 this.endDate = null;
                 this.setStartDate(date.clone());
-                if(this.chosenLabel=="CTSD")
+                if(this.chosenLabel=="Custom To Date")
                 {
                     this.setEndDate(moment());
                     // Comment to disable autoApply
@@ -1390,7 +1390,7 @@
         },
 
         calculateChosenLabel: function () {
-            if(this.chosenLabel=="CTSD")
+            if(this.chosenLabel=="Custom To Date")
             {
                 this.chosenLabel = this.container.find('.ranges li:eq(' + 5 + ')').addClass('active').html();
                 this.showCalendars();
