@@ -1401,7 +1401,8 @@
                 var customRange = true;
                 var i = 0;
                 for (var range in this.ranges) {
-                    if (this.timePicker) {
+                    //Disable time comparison
+					if (false) {
                         if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
                             customRange = false;
                             this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
