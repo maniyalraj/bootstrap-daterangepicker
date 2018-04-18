@@ -116,11 +116,12 @@
                 '</div>' +
                 '</div>' +
                 '<div class="calendar-table"></div>' +
+                '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+                '<button class="cancelBtn" type="button"></button>' +
                 '</div>' +
                 '<div class="ranges">' +
                 '<div class="range_inputs">' +
-                '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
-                '<button class="cancelBtn" type="button"></button>' +
+                
                 '</div>' +
                 '</div>' +
                 '</div>';
@@ -409,7 +410,6 @@
             this.container.find('.cancelBtn').addClass(this.cancelClass);
         this.container.find('.applyBtn').html(this.locale.applyLabel);
         this.container.find('.cancelBtn').html(this.locale.cancelLabel);
-
         //
         // event listeners
         //
@@ -436,6 +436,10 @@
             .on('click.daterangepicker', 'li', $.proxy(this.clickRange, this))
             .on('mouseenter.daterangepicker', 'li', $.proxy(this.hoverRange, this))
             .on('mouseleave.daterangepicker', 'li', $.proxy(this.updateFormInputs, this));
+
+            this.container.find('.applyBtn').on('click', $.proxy(this.clickApply, this));
+            this.container.find('.cancelBtn').on('click', $.proxy(this.clickCancel, this));
+
 
         if (this.element.is('input') || this.element.is('button')) {
             this.element.on({
@@ -1401,8 +1405,7 @@
                 var customRange = true;
                 var i = 0;
                 for (var range in this.ranges) {
-                    //Disable time comparison
-					if (false) {
+                    if (false) {
                         if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
                             customRange = false;
                             this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
