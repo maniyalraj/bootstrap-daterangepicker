@@ -1405,7 +1405,7 @@
                 this.showCalendars();
             }
             else {
-                if(this.chosenLabel == "Custom")
+                if(this.chosenLabel == "Custom Range")
                 {
                     var rangesLen = this.container.find('.ranges li').length;
                     for (var i = 0; i < rangesLen; i++) {
