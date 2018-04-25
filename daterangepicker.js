@@ -1214,7 +1214,7 @@
 
             // console.log("**"+label);
             this.chosenLabel = label;
-            this.calculateChosenLabel();
+            
             if (label == this.locale.customRangeLabel) {
                 this.showCalendars();
             } else if (label == "Custom To Date") {
@@ -1239,6 +1239,7 @@
                     this.hideCalendars();
                 this.clickApply();
             }
+            this.calculateChosenLabel();
         },
 
         clickPrev: function (e) {
