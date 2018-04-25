@@ -1214,6 +1214,7 @@
 
             // console.log("**"+label);
             this.chosenLabel = label;
+            this.calculateChosenLabel();
             if (label == this.locale.customRangeLabel) {
                 this.showCalendars();
             } else if (label == "Custom To Date") {
@@ -1395,6 +1396,7 @@
             if (this.chosenLabel == "Custom To Date") {
                 var rangesLen = this.container.find('.ranges li').length;
                 for (var i = 0; i < rangesLen; i++) {
+                    this.container.find('.ranges li:eq(' + i + ')').removeClass('active')
                     if (this.container.find('.ranges li')[i].innerHTML === this.chosenLabel) {
                         this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
                     }
@@ -1402,6 +1404,15 @@
                 this.showCalendars();
             }
             else {
+                if(this.chosenLabel == "Custom")
+                {
+                    var rangesLen = this.container.find('.ranges li').length;
+                    for (var i = 0; i < rangesLen; i++) {
+                        this.container.find('.ranges li:eq(' + i + ')').removeClass('active');
+                      
+                    }
+                   this.container.find('.ranges li:last').addClass('active');
+                }
                 var customRange = true;
                 var i = 0;
                 for (var range in this.ranges) {
@@ -1422,6 +1433,11 @@
                     i++;
                 }
                 if (customRange) {
+                    var rangesLen = this.container.find('.ranges li').length;
+                    for (var i = 0; i < rangesLen; i++) {
+                        this.container.find('.ranges li:eq(' + i + ')').removeClass('active');
+                      
+                    }
                     if (this.showCustomRangeLabel) {
                         this.chosenLabel = this.container.find('.ranges li:last').addClass('active').html();
                     } else {
