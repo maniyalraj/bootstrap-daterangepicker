@@ -1126,7 +1126,7 @@
             this.oldStartDate = this.startDate.clone();
             this.oldEndDate = this.endDate.clone();
             this.previousRightTime = this.endDate.clone();
-
+            this.oldChosenLabel= this.chosenLabel;
             this.updateView();
             this.container.show();
             this.move();
@@ -1457,7 +1457,9 @@
         clickCancel: function (e) {
             this.startDate = this.oldStartDate;
             this.endDate = this.oldEndDate;
+            this.chosenLabel=this.oldChosenLabel;
             this.hide();
+            
             this.element.trigger('cancel.daterangepicker', this);
         },
 
