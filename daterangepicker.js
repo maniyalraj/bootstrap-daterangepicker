@@ -27,7 +27,7 @@
     }
 }(this, function (moment, $) {
     var DateRangePicker = function (element, options, cb) {
-
+       
         //default settings for options
         this.parentEl = 'body';
         this.element = $(element);
@@ -1201,7 +1201,12 @@
 
             if (label == this.locale.customRangeLabel) {
                 this.updateView();
-            } else {
+            }else if (label == "Custom To Date") {
+                var dates = this.ranges[label];
+                // this.container.find('input[name=daterangepicker_start]').val(dates[0].format(this.locale.format));
+                this.container.find('input[name=daterangepicker_end]').val(dates[0].format(this.locale.format));
+            }
+             else {
                 var dates = this.ranges[label];
                 this.container.find('input[name=daterangepicker_start]').val(dates[0].format(this.locale.format));
                 this.container.find('input[name=daterangepicker_end]').val(dates[1].format(this.locale.format));
@@ -1219,8 +1224,8 @@
                 this.showCalendars();
             } else if (label == "Custom To Date") {
                 var dates = this.ranges[label];
-                this.startDate = dates[0];
-                this.endDate = moment();
+              //  this.startDate = dates[0];
+                this.endDate =dates[0];
 
                 if (!this.alwaysShowCalendars)
                     this.clickApply();
@@ -1351,7 +1356,7 @@
                 this.endDate = null;
                 this.setStartDate(date.clone());
                 if (this.chosenLabel == "Custom To Date") {
-                    this.setEndDate(moment());
+                    this.setEndDate(this.ranges[this.chosenLabel][0]);
                     // Comment to disable autoApply
                     // this.clickApply();
                 }
