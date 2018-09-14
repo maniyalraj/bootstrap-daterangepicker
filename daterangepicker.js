@@ -1422,7 +1422,7 @@
                 var customRange = true;
                 var i = 0;
                 for (var range in this.ranges) {
-                    if (false) {
+                    if (this.timePicker) {
                         if (this.startDate.isSame(this.ranges[range][0]) && this.endDate.isSame(this.ranges[range][1])) {
                             customRange = false;
                             this.chosenLabel = this.container.find('.ranges li:eq(' + i + ')').addClass('active').html();
